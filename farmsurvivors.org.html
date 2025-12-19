@@ -1,0 +1,455 @@
+<!DOCTYPE html><html lang="en"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+  <!-- Basic -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Farm Survivors — Play Online | farmsurvivors.org</title>
+  <meta name="description" content="Play Farm Survivors online in your browser on farmsurvivors.org. A fast-paced survival game set on a farm—jump in instantly with the official embed.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://farmsurvivors.org/">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="farmsurvivors.org">
+  <meta property="og:title" content="Farm Survivors — Play Online">
+  <meta property="og:description" content="Play Farm Survivors online in your browser. Fast, farm-themed survival action—start instantly.">
+  <meta property="og:url" content="https://farmsurvivors.org/">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#0A84FF">
+
+  <!-- Structured Data (SoftwareApplication / Game) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": "Farm Survivors",
+    "url": "https://farmsurvivors.org/",
+    "applicationCategory": "Game",
+    "operatingSystem": "Web",
+    "inLanguage": "en",
+    "description": "Play Farm Survivors online in your browser on farmsurvivors.org. Fast-paced survival action set on a farm.",
+    "isAccessibleForFree": true
+  }
+  </script>
+
+  <style>
+    /* ---- Apple-like color system (approx) ---- */
+    :root{
+      --bg: #f5f5f7;          /* Apple page background */
+      --card: #ffffff;        /* Card surface */
+      --text: #1d1d1f;        /* Apple primary text */
+      --muted: #6e6e73;       /* Apple secondary text */
+      --border: rgba(0,0,0,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --accent: #0a84ff;      /* Apple blue */
+      --accent-2: #34c759;    /* Apple green */
+      --warning: #ff9f0a;     /* Apple orange */
+      --radius: 18px;
+      --max: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(900px 500px at 15% 0%, rgba(10,132,255,.12), transparent 60%),
+                  radial-gradient(900px 500px at 90% 15%, rgba(52,199,89,.12), transparent 55%),
+                  var(--bg);
+      line-height: 1.6;
+    }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    /* Layout */
+    .container{
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 22px 16px 56px;
+    }
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: saturate(180%) blur(14px);
+      background: rgba(245,245,247,.72);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .topbar-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .logo{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(10,132,255,1), rgba(52,199,89,1));
+      box-shadow: 0 6px 18px rgba(10,132,255,.18);
+      flex: 0 0 auto;
+    }
+    .brand span{
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .nav{
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .nav a{
+      color: var(--text);
+      font-size: 14px;
+      padding: 6px 10px;
+      border-radius: 10px;
+    }
+    .nav a:hover{
+      background: rgba(10,132,255,.10);
+      text-decoration: none;
+    }
+
+    /* Hero */
+    .hero{
+      padding: 26px 0 10px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: start;
+    }
+    .hero-card{
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px 18px;
+    }
+    h1{
+      margin: 0 0 8px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+    .tagline{
+      margin: 0;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    .pill-row{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.08);
+      background: rgba(255,255,255,.65);
+      font-size: 13px;
+      color: var(--text);
+    }
+    .dot{
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(10,132,255,.12);
+    }
+    .dot.green{ background: var(--accent-2); box-shadow: 0 0 0 4px rgba(52,199,89,.14); }
+    .dot.orange{ background: var(--warning); box-shadow: 0 0 0 4px rgba(255,159,10,.16); }
+
+    .cta-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.72));
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    .cta-card h2{
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+    }
+    .cta-card p{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .btns{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,0,0,.08);
+      background: rgba(255,255,255,.75);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .btn.primary{
+      background: var(--accent);
+      border-color: rgba(10,132,255,.35);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(10,132,255,.25);
+    }
+    .btn:hover{ text-decoration: none; filter: brightness(0.98); }
+
+    /* Main sections */
+    .grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .card{
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+    h2{
+      margin: 0 0 10px;
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+    .muted{ color: var(--muted); }
+
+    /* Responsive embed for itch.io iframe */
+    .embed-wrap{
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,.10);
+      background: #fff;
+    }
+    .embed-responsive{
+      position: relative;
+      width: 100%;
+      /* This embed is short (167px) but we keep it readable on mobile */
+      padding-top: 0;
+    }
+    .embed-iframe{
+      width: 100%;
+      height: 190px;
+      border: 0;
+      display: block;
+    }
+    @media (max-width: 420px){
+      .embed-iframe{ height: 210px; }
+    }
+
+    /* Two-column content on desktop */
+    .content{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+    }
+
+    .list{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+    }
+    .list li{ margin: 6px 0; }
+
+    /* Footer */
+    footer{
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 18px 0 6px;
+    }
+    footer a{ color: var(--muted); }
+    footer a:hover{ color: var(--accent); }
+
+    /* Mobile layout */
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+      .content{ grid-template-columns: 1fr; }
+      .nav{ display: none; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand" aria-label="Site brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>farmsurvivors.org</span>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="#play">Play</a>
+        <a href="#about">About</a>
+        <a href="#gameplay">Gameplay</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" aria-label="Hero">
+      <div class="hero-card">
+        <!-- Exactly one H1 on the page -->
+        <h1>Farm Survivors</h1>
+        <p class="tagline">
+          A quick, farm-themed survival game you can play instantly in your browser—no downloads, no friction.
+        </p>
+
+        <div class="pill-row" aria-label="Highlights">
+          <div class="pill"><span class="dot" aria-hidden="true"></span> Play online (embedded)</div>
+          <div class="pill"><span class="dot green" aria-hidden="true"></span> Mobile-friendly layout</div>
+          <div class="pill"><span class="dot orange" aria-hidden="true"></span> Fast pick-up-and-play sessions</div>
+        </div>
+      </div>
+
+      <aside class="cta-card" aria-label="Quick actions">
+        <h2>Start playing</h2>
+        <p>Jump straight to the official embed and launch Farm Survivors in seconds.</p>
+        <div class="btns">
+          <a class="btn primary" href="#play">Play Now</a>
+          <a class="btn" href="#about">Learn More</a>
+        </div>
+      </aside>
+    </section>
+
+    <section id="play" class="grid" aria-label="Play section">
+      <article class="card">
+        <h2>Play Farm Survivors Online</h2>
+        <p class="muted">
+          The game below is embedded from itch.io. If it doesn’t load due to network or browser restrictions,
+          you can open the official page directly from the embed.
+        </p>
+
+        <div class="embed-wrap" role="region" aria-label="Embedded game">
+          <!-- User-provided iframe (kept intact; only styling around it) -->
+          <iframe class="embed-iframe" src="https://itch.io/embed/4121706" width="552" height="167" frameborder="0" loading="lazy" title="Farm Survivors — itch.io embed">
+            <a href="https://rodrigocard.itch.io/farm-survivors-fixed">Farm Survivors (FIXED) by Rodrigo Rocha, endcrs</a>
+          </iframe>
+        </div>
+
+        <p class="muted" style="margin-top:12px;">
+          Official itch.io page:
+          <a href="https://rodrigocard.itch.io/farm-survivors-fixed" rel="noopener noreferrer" target="_blank">
+            Farm Survivors (FIXED)
+          </a>
+        </p>
+      </article>
+    </section>
+
+    <section class="content" aria-label="Main content">
+      <article id="about" class="card">
+        <h2>About the Game</h2>
+        <p>
+          <strong>Farm Survivors</strong> is a survival-style action game set in a farm environment.
+          The goal is simple: stay alive as long as you can, manage pressure as threats ramp up,
+          and keep improving your runs by learning patterns and making smarter decisions.
+        </p>
+        <p>
+          This page is built to be lightweight, readable, and fast on both desktop and mobile—so you can
+          get into the game immediately and still have clear information about what you’re playing.
+        </p>
+      </article>
+
+      <aside class="card" aria-label="Game basics">
+        <h2>Game Basics</h2>
+        <ul class="list">
+          <li><strong>Genre:</strong> Survival / action</li>
+          <li><strong>Platform:</strong> Web (browser)</li>
+          <li><strong>Session style:</strong> Short, replayable runs</li>
+          <li><strong>How to play:</strong> Use the embedded player above to launch instantly</li>
+        </ul>
+        <p class="muted" style="margin-top:10px;">
+          Tip: For the smoothest experience on mobile, rotate to landscape and use full-screen if available.
+        </p>
+      </aside>
+    </section>
+
+    <section id="gameplay" class="grid" aria-label="Gameplay section">
+      <article class="card">
+        <h2>Gameplay Overview</h2>
+        <p>
+          Expect a quick learning curve and escalating intensity. Each run rewards focus and adaptation:
+          as the game gets harder, you’ll need to prioritize survival, position carefully, and make choices
+          that help you last longer.
+        </p>
+        <p class="muted">
+          Because different devices and browsers behave differently, performance can vary—closing background
+          tabs and using an updated browser can help.
+        </p>
+      </article>
+    </section>
+
+    <section id="faq" class="grid" aria-label="FAQ section">
+      <article class="card">
+        <h2>FAQ</h2>
+
+        <h2 style="font-size:18px; margin-top:14px;">Is Farm Survivors free to play?</h2>
+        <p class="muted">
+          The game is provided via an itch.io embed and is accessible directly from this page.
+        </p>
+
+        <h2 style="font-size:18px; margin-top:14px;">The embed doesn’t load—what should I do?</h2>
+        <p class="muted">
+          Some browsers, extensions, or networks block third-party embeds. Use the official link above to open it
+          on itch.io.
+        </p>
+
+        <h2 style="font-size:18px; margin-top:14px;">Is this site affiliated with the game creators?</h2>
+        <p class="muted">
+          This site hosts an embedded player and provides informational content for players. All game content is
+          delivered by the original itch.io listing.
+        </p>
+      </article>
+    </section>
+
+    <footer aria-label="Footer">
+      <div>
+        © <span id="y"></span> farmsurvivors.org ·
+        <a href="https://farmsurvivors.org/" rel="canonical">Canonical</a> ·
+        <a href="#play">Play</a>
+      </div>
+      <script>
+        document.getElementById('y').textContent = new Date().getFullYear();
+      </script>
+    </footer>
+  </main>
+
+
+</body></html>
